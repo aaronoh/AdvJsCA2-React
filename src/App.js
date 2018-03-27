@@ -12,7 +12,7 @@ class GetStations extends React.Component {
             contract: 'all',
             bikes: [],
             stands: [],
-            searchText:''
+            searchText:'a'
         };
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -55,31 +55,27 @@ class GetStations extends React.Component {
     }
 
     render() {
-        console.log(this.state.stations);
-        const list = this.state.stations.map( (u, i) => {
-                return <Station key={uuidv1()} contract = {u.contract_name} name={u.name} bikes={u.available_bikes} stands={u.available_bike_stands}/>;
+        const data = this.state.stations;
+        let list = data.map(station => {
+            const nameMatch = station.name.startsWith(this.state.searchText);
+                return <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots}/>;
         });
         console.log(list)
-        return (
-            <div>
-                <h1>Dublin Bikes:</h1>
-                <select
-                    name="contract"
-                    type="select"
-                    value={this.state.contract}
-                    onChange={this.handleInputChange}>
-                    <option value ='Dublin'>Dublin</option>
-                    <option value='Paris'>Paris</option>
-                    <option value='Berlin'>Berlin</option>
-                </select>
-                {list}
-            </div>
-        );
-    }
-}
-
-class Station extends React.Component {
-    render() {
+        // return (
+        //     <div>
+        //         <h1>Dublin Bikes:</h1>
+        //         <select
+        //             name="contract"
+        //             type="select"
+        //             value={this.state.contract}
+        //             onChange={this.handleInputChange}>
+        //             <option value ='Dublin'>Dublin</option>
+        //             <option value='Paris'>Paris</option>
+        //             <option value='Berlin'>Berlin</option>
+        //         </select>
+        //         {list}
+        //     </div>
+        // );
         return (
             <div>
             <Search name="searchText" label="Search by station name" value={this.state.searchText} handleChange={this.handleChange} placeholder={"e.g. alberto"} />
