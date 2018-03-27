@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Search from './components/search'
+import Station from './components/station'
+import Contract from './components/contract'
 
 const uuidv1 = require('uuid/v1');
 
@@ -9,7 +11,7 @@ class GetStations extends React.Component {
         super();
         this.state = {
             stations: [],
-            contract: 'all',
+            contract: 'Dublin',
             bikes: [],
             stands: [],
             searchText:''
@@ -18,7 +20,9 @@ class GetStations extends React.Component {
     }
 
     componentWillMount() {
-        fetch('https://api.jcdecaux.com/vls/v1/stations?contract=Dublin&apiKey=2eb0463a8d6feabf397cf5babdc21d4e764701a9')
+        let contract = (this.state.contract)
+        console.log('Contract is : ' + contract)
+        fetch(`https://api.jcdecaux.com/vls/v1/stations?contract=${contract}&apiKey=2eb0463a8d6feabf397cf5babdc21d4e764701a9`)
             .then(response => {
                 if(response.ok) return response.json();
                 throw new Error('Request failed.');
@@ -48,10 +52,15 @@ class GetStations extends React.Component {
         const bikes = target.bikes;
         const stands = target.stands;
         console.log(`Input name ${name}. Input value ${value}.`);
+        console.log(target.type)
+        if (target.type ==='select-one'){
+            console.log('kfghjkhkihkjhkljkhjkhj')
+        }
 
         this.setState({
-            [name]: value
+            [name]: value,
         });
+
     }
 
     render() {
@@ -64,35 +73,15 @@ class GetStations extends React.Component {
         return (
             <div>
                 <h1>Dublin Bikes:</h1>
-                <select
-                    name="contract"
-                    type="select"
-                    value={this.state.contract}
-                    onChange={this.handleInputChange}>
-                    <option value ='Dublin'>Dublin</option>
-                    <option value='Paris'>Paris</option>
-                    <option value='Berlin'>Berlin</option>
-                </select>
+                <Contract options={['Dublin','Paris']} name = 'city' handleChange = {this.handleInputChange} label = "Select City" selected = {this.state.contract}/>
+                <Search name="searchText" label="Search by station name" value={''} handleChange={this.handleInputChange} placeholder={"e.g. alberto"} />
                 {list}
             </div>
         );
     }
+
 }
 
-class Station extends React.Component {
-    render() {
-        return (
-            <div>
-            <Search name="searchText" label="Search by station name" value={this.state.searchText} handleChange={this.handleChange} placeholder={"e.g. alberto"} />
-            <div style={{'borderStyle': 'dotted'}}>
-                <h3>{this.props.name}</h3>
-                <p>Bikes Available: {this.props.bikes}</p>
-                <p>Stands Available: {this.props.stands}</p>
-            </div>
-            </div>
-        );
-    }
-}
 
 ReactDOM.render(
     <GetStations />,
