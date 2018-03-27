@@ -67,7 +67,9 @@ class GetStations extends React.Component {
         const data = this.state.stations;
         let list = data.map(station => {
             const nameMatch = station.name.startsWith(this.state.searchText);
-                return <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots}/>;
+                return (nameMatch)? (
+                    <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots}/>
+                ) : null;
         });
         console.log(list)
         return (
