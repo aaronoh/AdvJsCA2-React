@@ -8,7 +8,7 @@ class Contract extends React.Component {
         return (
             <div>
                 <label>{this.props.label}</label>
-                <select value={this.props.selected} name={this.props.name} onChange={this.props.handleChange}>{options}</select>
+                <select value={this.props.selected} name={this.props.name} defaultValue={'Dublin'} onChange={this.props.handleChange}>{options}</select>
              </div>
         );
     }

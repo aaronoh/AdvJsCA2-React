@@ -28,7 +28,7 @@ class GetStations extends React.Component {
                 throw new Error('Request failed.');
             })
             .then(data => {
-                console.log(data.results);
+                console.log(data);
 
                 const stations = data.map(station => {
                     return {name: station.name,
@@ -47,15 +47,11 @@ class GetStations extends React.Component {
     }
     handleInputChange(event) {
         const target = event.target;
-        const value = target.type === 'select' ? target.selected : target.value;
+        const value = target.type === 'select-one' ? target.selected : target.value;
         const name = target.name;
-        const bikes = target.bikes;
-        const stands = target.stands;
         console.log(`Input name ${name}. Input value ${value}.`);
         console.log(target.type)
-        if (target.type ==='select-one'){
-            console.log('kfghjkhkihkjhkljkhjkhj')
-        }
+
 
         this.setState({
             [name]: value,
@@ -66,7 +62,8 @@ class GetStations extends React.Component {
     render() {
         const data = this.state.stations;
         let list = data.map(station => {
-            const nameMatch = station.name.includes(this.state.searchText);
+            let search = this.state.searchText.toUpperCase();
+            const nameMatch = station.name.startsWith(search);
                 return (nameMatch)? (
                     <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots}/>
                 ) : null;
@@ -75,8 +72,8 @@ class GetStations extends React.Component {
         return (
             <div>
                 <h1>Dublin Bikes:</h1>
-                <Contract options={['Dublin','Paris']} name = 'city' handleChange = {this.handleInputChange} label = "Select City" selected = {this.state.contract}/>
-                <Search name="searchText" label="Search by station name" value={''} handleChange={this.handleInputChange} placeholder={"e.g. alberto"} />
+                <Contract options={['Dublin','Paris']} name = 'city' handleChange  = {this.handleInputChange} label = "Select City" selected = {this.state.contract}/>
+                <Search name="searchText" label="Search by station name" value={this.props.value} handleChange={this.handleInputChange} placeholder={"e.g. Smithfield North"} />
                 {list}
             </div>
         );
