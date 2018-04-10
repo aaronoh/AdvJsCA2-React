@@ -7,6 +7,8 @@ class Home extends React.Component {
         return(
             <div>
                 <h2>Home</h2>
+                <p>Dublin Bikes Live Availability</p>
+                <br/><br/>
             </div>
         );
     }
@@ -17,47 +19,35 @@ class About extends React.Component {
         return(
             <div>
                 <h2>About</h2>
+                <p>Simply type the station name below to begin searching. Click on the map icon to view your station on a map.</p>
+            <br/><br/>
             </div>
         );
     }
 }
 
-class Contact extends React.Component {
-    render() {
-        return(
-            <div>
-                <h2>Contact Us</h2>
-            </div>
-        );
-    }
-}
 
-class BasicExample extends React.Component {
+class Nav extends React.Component {
     render() {
         return(
             <BrowserRouter>
                 <div>
-                    <ul>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/contact">Contact Us</Link></li>
-                        <li><Link to="/test">Test Link</Link></li>
-
-                    </ul>
-
-                    <hr/>
-
+                    <nav>
+                        <div class="nav-wrapper">
+                            <a href="#" class="brand-logo"><i className="large material-icons">directions_bike</i></a>
+                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><Link to="/">Home</Link></li>
+                                <li><Link to="/about">About</Link></li>
+                            </ul>
+                        </div>
+                    </nav>
                     {/* The exact keyword ensures the '/' route matches only '/' and not '/anything-else'--> */}
                     <Route exact path="/" component={Home}/>
                     <Route path="/about" component={About}/>
-                    <Route path="/contact" component={Contact}/>
                 </div>
             </BrowserRouter>
         );
     }
 }
 
-ReactDOM.render(
-    <BasicExample />,
-    document.getElementById('root')
-);
+export default Nav;

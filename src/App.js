@@ -2,9 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Search from './components/search'
 import Station from './components/station'
+import Nav from './components/router'
 import Contract from './components/contract'
 
 const uuidv1 = require('uuid/v1');
+function cardClicked(){
+    console.log('clicked');
+}
+
 
 class GetStations extends React.Component {
     constructor(){
@@ -18,6 +23,7 @@ class GetStations extends React.Component {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
     }
+
 
     componentWillMount() {
         let contract = (this.state.contract)
@@ -71,10 +77,15 @@ class GetStations extends React.Component {
         console.log(list)
         return (
             <div>
-                <h1>Dublin Bikes:</h1>
-                <Contract options={['Dublin','Paris']} name = 'city' handleChange  = {this.handleInputChange} label = "Select City" selected = {this.state.contract}/>
-                <Search name="searchText" label="Search by station name" value={this.props.value} handleChange={this.handleInputChange} placeholder={"e.g. Smithfield North"} />
+                <div className = 'container'>
+                <Nav/>
+                {/*<Contract options={['Dublin','Paris']} name = 'city' handleChange  = {this.handleInputChange} label = "Select City" selected = {this.state.contract}/>*/}
+                <Search name="searchText" id = 'searchField' value={this.props.value} handleChange={this.handleInputChange} placeholder={"e.g. Smithfield North"} />
+
+                    <div className = 'row'>
                 {list}
+                    </div>
+                </div>
             </div>
         );
     }
