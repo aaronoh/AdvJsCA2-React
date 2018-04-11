@@ -1,4 +1,6 @@
 import React from "react";
+import {Button, Modal} from 'react-materialize';
+import Map from './map';
 
 class Station extends React.Component {
     render() {
@@ -17,14 +19,19 @@ class Station extends React.Component {
                         <i className="small material-icons">directions_bike</i>
                           </td></tr>
                           <tr><td>
-                        <p className='col l5'>Stands Available: {this.props.stands}</p>
+                        <p style={{'width': '200px'}}>Stands Available: {this.props.stands}</p>
                            </td><td>
                         <i className="small material-icons">local_parking</i>
                            </td></tr>
                             </tbody>
                         </table>
                             <div className="card-action">
-                                <a onClick={this.cardClicked} className="map-btn btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">map</i></a>
+                                <Modal
+                                    className="map-modal"
+                                    header={this.props.name}
+                                    trigger={<a className="map-btn btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">map</i></a>}>
+                                   <Map name = {this.props.name} lat = {this.props.lat} lng = {this.props.lng}/>
+                                </Modal>
                             </div>
 
 

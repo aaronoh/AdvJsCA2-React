@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Link} from 'react-router-dom';
 class Home extends React.Component {
     render() {
         return(
-            <div>
+            <div className='container'>
                 <h2>Home</h2>
                 <p>Dublin Bikes Live Availability</p>
                 <br/><br/>
@@ -17,7 +17,7 @@ class Home extends React.Component {
 class About extends React.Component {
     render() {
         return(
-            <div>
+            <div className='container'>
                 <h2>About</h2>
                 <p>Simply type the station name below to begin searching. Click on the map icon to view your station on a map.</p>
             <br/><br/>
@@ -33,9 +33,9 @@ class Nav extends React.Component {
             <BrowserRouter>
                 <div>
                     <nav>
-                        <div class="nav-wrapper">
-                            <a href="#" class="brand-logo"><i className="large material-icons">directions_bike</i></a>
-                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <div className="nav-wrapper">
+                            <a href="#" className="brand-logo"><i className="large material-icons">directions_bike</i></a>
+                            <ul id="nav-mobile" className="right hide-on-med-and-down">
                                 <li><Link to="/">Home</Link></li>
                                 <li><Link to="/about">About</Link></li>
                             </ul>

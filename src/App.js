@@ -6,10 +6,6 @@ import Nav from './components/router'
 import Contract from './components/contract'
 
 const uuidv1 = require('uuid/v1');
-function cardClicked(){
-    console.log('clicked');
-}
-
 
 class GetStations extends React.Component {
     constructor(){
@@ -40,10 +36,12 @@ class GetStations extends React.Component {
                     return {name: station.name,
                         bikes: station.available_bikes,
                         slots: station.available_bike_stands,
-                        lat: station.location,
-                        long: station.location,
+                        lat: station.position.lat,
+                        lng: station.position.lng,
                         city: station.contract_name};
+
                 });
+                console.log(stations);
                 this.setState({stations: stations});
 
             })
@@ -71,14 +69,15 @@ class GetStations extends React.Component {
             let search = this.state.searchText.toUpperCase();
             const nameMatch = station.name.startsWith(search);
                 return (nameMatch)? (
-                    <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots}/>
+                    <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots} lat = {station.lat} lng = {station.lng}/>
                 ) : null;
         });
         console.log(list)
         return (
             <div>
-                <div className = 'container'>
                 <Nav/>
+                <div className = 'container'>
+
                 {/*<Contract options={['Dublin','Paris']} name = 'city' handleChange  = {this.handleInputChange} label = "Select City" selected = {this.state.contract}/>*/}
                 <Search name="searchText" id = 'searchField' value={this.props.value} handleChange={this.handleInputChange} placeholder={"e.g. Smithfield North"} />
 

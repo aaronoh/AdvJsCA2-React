@@ -6,7 +6,7 @@ class Search extends React.Component {
 
                         <div className="input-field col s12 m6 l3">
                             <input id = {this.props.id} name={this.props.name} value={this.props.value} onChange={this.props.handleChange} type="text" placeholder={this.props.placeholder} />
-                            <label for={this.props.id}>Search by Station name</label>
+                            <label>Search by Station name</label>
                         </div>
 
         );
