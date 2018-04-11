@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Modal} from 'react-materialize';
+import {Modal} from 'react-materialize';
 import Map from './map';
 
 class Station extends React.Component {
@@ -30,7 +30,7 @@ class Station extends React.Component {
                                     className="map-modal"
                                     header={this.props.name}
                                     trigger={<a className="map-btn btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">map</i></a>}>
-                                   <Map name = {this.props.name} lat = {this.props.lat} lng = {this.props.lng}/>
+                                   <Map center={{ lat: this.props.lat, lng: this.props.lng }} name = {this.props.name} lat = {this.props.lat} lng = {this.props.lng}/>
                                 </Modal>
                             </div>
 
