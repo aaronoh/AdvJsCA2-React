@@ -15,12 +15,13 @@ class GetStations extends React.Component {
             stations: [],
             contract: 'Dublin',
             bikes: [],
+            banking: 'false',
             stands: [],
             searchText:'',
             lat: '',
             lng:'',
             sort:'No',
-            range: 0
+            range: '0'
         };
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -28,7 +29,6 @@ class GetStations extends React.Component {
 
     componentWillMount() {
         let contract = (this.state.contract)
-        console.log('Contract is : ' + contract)
         fetch(`https://api.jcdecaux.com/vls/v1/stations?contract=${contract}&apiKey=2eb0463a8d6feabf397cf5babdc21d4e764701a9`)
             .then(response => {
                 if(response.ok) return response.json();
@@ -41,6 +41,7 @@ class GetStations extends React.Component {
                     return {name: station.name,
                         bikes: station.available_bikes,
                         slots: station.available_bike_stands,
+                        banking: station.banking,
                         lat: station.position.lat,
                         lng: station.position.lng,
                         num: station.number};
@@ -78,7 +79,7 @@ class GetStations extends React.Component {
             let search = this.state.searchText.toUpperCase();
             const nameMatch = station.name.startsWith(search);
                 return (rangeMatch && nameMatch)? (
-                    <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots} lat = {station.lat} lng = {station.lng} num ={station.num}/>
+                    <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots} lat = {station.lat} lng = {station.lng} banking = {station.banking} num ={station.num}/>
                 ) : null;
         });
         return (

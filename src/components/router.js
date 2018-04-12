@@ -33,7 +33,7 @@ class Nav extends React.Component {
                 <div>
                     <nav>
                         <div className="nav-wrapper">
-                            <a href="#" className="brand-logo"><i className="large material-icons">directions_bike</i></a>
+                            <a className=" nav_logo brand-logo"><i className="large material-icons">directions_bike</i></a>
                             <ul id="nav-mobile" className="right hide-on-med-and-down">
                                 <li><Link to="/">Home</Link></li>
                                 <li><Link to="/about">About</Link></li>

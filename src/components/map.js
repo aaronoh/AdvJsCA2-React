@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const CustomMarker = ({ text }) => <div className="custom-marker"><p>{text}</p></div>;
+const CustomMarker = () => <div><i style={{'color': '#e74c3c'}}className=" medium material-icons">location_on</i></div>;
 
 class Map extends Component {
     static defaultProps = {
@@ -9,11 +9,10 @@ class Map extends Component {
             lat: 59.95,
             lng: 30.33
         },
-        zoom: 17
+        zoom: 18
     };
 
     render() {
-        console.log('map render');
         return (
             // Important! Always set the container height explicitly
             <div style={{ height: '350px', width: '100%' }}>
@@ -26,9 +25,7 @@ class Map extends Component {
                     <CustomMarker
                         lat={this.props.lat}
                         lng={this.props.lng}
-                        text={this.props.name}
                     />
-                    {console.log(1)}
                 </GoogleMapReact>
             </div>
         );

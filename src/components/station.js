@@ -15,7 +15,6 @@ class Station extends React.Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        console.log(target,name,value);
 
         this.setState({
             [name]: value,
@@ -23,7 +22,11 @@ class Station extends React.Component {
     };
 
     render() {
-        console.log(this.state.show);
+        let banking = <div><i style={{'color': '#ecf0f1'}}className="material-icons">payment</i></div>
+        {if (this.props.banking.toString() === 'true'){
+            banking = <div><i style={{'color': '#2c3e50'}}className="material-icons">payment</i></div>
+        }}
+
         let modal = <div></div>;
         if(this.state.show) {
              modal = <Modal
@@ -32,15 +35,17 @@ class Station extends React.Component {
                 header={this.props.name}>
                 <Map center={{lat: this.props.lat, lng: this.props.lng}} name={this.props.name} lat={this.props.lat}
                      lng={this.props.lng}/>
-            </Modal>
+                 <table><tr>
+                     <td>Banking:</td>
+                     <td>{banking}</td>
+                 </tr></table>
+             </Modal>
             let modalid = '#' + this.props.num.toString();
             setTimeout(function() {
                 window.$(modalid).modal('open');
             }, 1);
-
-            console.log(modalid);
-
         }
+
         return (
 
                 <div className ='col s12 m6 l4'>
@@ -48,8 +53,10 @@ class Station extends React.Component {
                         <table>
                             <tbody>
                          <tr><td>
-                            <h4 className='s-head'>{this.props.name}</h4>
-                         </td></tr>
+                            <h4 className='s-head'>{this.props.name} </h4>
+                         </td>
+                         <td>{banking}</td>
+                         </tr>
                          <tr><td>
                         <p>Bikes Available: {this.props.bikes}</p>
                           </td>
@@ -63,19 +70,12 @@ class Station extends React.Component {
                            </td></tr>
                             </tbody>
                         </table>
-                        <div>
-                            <Button name ='show' icon='map' value={true} onClick={this.handleInputChange}>Show Map</Button>
-                            {/*<Modal*/}
-                                {/*className="map-modal"*/}
-                                {/*id='foo'*/}
-                                {/*header={this.props.name}>*/}
-                                {/*<Map center={{ lat: this.props.lat, lng: this.props.lng }} name = {this.props.name} lat = {this.props.lat} lng = {this.props.lng}/>*/}
-                            {/*</Modal>*/}
+                        <div className='card-action'>
+                            <Button style={{'background-color': '#e74c3c'}}name ='show'  value={true} onClick={this.handleInputChange}>Show Map</Button>
                             {modal}
-                            </div>
-
-
+                        </div>
                     </div>
+
                 </div>
 
         );
