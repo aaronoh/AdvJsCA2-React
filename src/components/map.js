@@ -13,6 +13,7 @@ class Map extends Component {
     };
 
     render() {
+        console.log('map render');
         return (
             // Important! Always set the container height explicitly
             <div style={{ height: '350px', width: '100%' }}>
@@ -27,6 +28,7 @@ class Map extends Component {
                         lng={this.props.lng}
                         text={this.props.name}
                     />
+                    {console.log(1)}
                 </GoogleMapReact>
             </div>
         );

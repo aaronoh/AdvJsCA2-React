@@ -35,13 +35,15 @@ class GetStations extends React.Component {
                 throw new Error('Request failed.');
             })
             .then(data => {
+                console.log(data)
 
                 const stations = data.map(station => {
                     return {name: station.name,
                         bikes: station.available_bikes,
                         slots: station.available_bike_stands,
                         lat: station.position.lat,
-                        lng: station.position.lng};
+                        lng: station.position.lng,
+                        num: station.number};
 
                 });
                 this.setState({stations: stations});
@@ -76,7 +78,7 @@ class GetStations extends React.Component {
             let search = this.state.searchText.toUpperCase();
             const nameMatch = station.name.startsWith(search);
                 return (rangeMatch && nameMatch)? (
-                    <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots} lat = {station.lat} lng = {station.lng}/>
+                    <Station key={uuidv1()} contract = {station.city} name={station.name} bikes={station.bikes} stands={station.slots} lat = {station.lat} lng = {station.lng} num ={station.num}/>
                 ) : null;
         });
         return (
