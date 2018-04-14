@@ -38,7 +38,16 @@ class Station extends React.Component {
                  <table><tr>
                      <td>Banking:</td>
                      <td>{banking}</td>
-                 </tr></table>
+                 </tr>
+                     <tr>
+                         <td>Bikes:</td>
+                         <td>{this.props.bikes}</td>
+                     </tr>
+                     <tr>
+                         <td>Stands:</td>
+                         <td>{this.props.stands}</td>
+                     </tr>
+                 </table>
              </Modal>
             let modalid = '#' + this.props.num.toString();
             setTimeout(function() {
