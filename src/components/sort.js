@@ -24,6 +24,6 @@ class SortRadioButton extends React.Component {
 }
 
 SortRadioButton.propTypes ={
-    checked: PropTypes.string
+    checked: PropTypes.string.isRequired
 }
 export default SortRadioButton;

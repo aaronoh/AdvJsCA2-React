@@ -96,12 +96,12 @@ class Station extends React.Component {
 }
 
 Station.propTypes ={
-    banking: PropTypes.bool,
-    num: PropTypes.number,
-    name: PropTypes.string,
-    lat: PropTypes.number,
-    lng: PropTypes.number,
-    bikes: PropTypes.number,
-    stands: PropTypes.number
+    banking: PropTypes.bool.isRequired,
+    num: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+    bikes: PropTypes.number.isRequired,
+    stands: PropTypes.number.isRequired
 }
 export default Station

@@ -35,9 +35,9 @@ class Map extends Component {
 }
 
 Map.propTypes ={
-    zoom: PropTypes.number,
-    lat: PropTypes.number,
-    lng: PropTypes.number,
+    zoom: PropTypes.number.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
 
 }
 export default Map;

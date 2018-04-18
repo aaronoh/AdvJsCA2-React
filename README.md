@@ -38,40 +38,28 @@ Wireframes allow the developer to plan the layout of their code. This applicatio
 
 This section will discuss how the project met the requirements of the brief.
 
-**Import/Export**
-
-
 **Components**
-Components are used to make code modular, alowing for reuse. This application is built using anumbre of compenents as shown in the wireframes above, e.g the <Station/> component is used to . These components are then  **exported** (`export default Station`)
+
+Components are used to make code modular, allowing for reuse. This application is built using a number of components as shown in the wireframes above, e.g the <Station/> component is used to build the card UI and modal for each individual station. These components are then **exported** (`export default Station`)
 and **imported** (`import Station from './components/station'`) based on their usage.
 
 **State**
-State allows dynamic compenents to be created using react. The state is initialized in the constructor of a compenent.
+State allows dynamic components to be created using react. The state is initialized in the constructor of a component.
 
-        this.state = {
-
-            stations: [],
-
-            contract: 'Dublin',
-
-            bikes: [],
-
-            banking: 'false',
-
-            stands: [],
-
-            searchText:'',
-
-            lat: '',
-
-            lng:'',
-
-            sort:'No',
-
-            range: '0'
-
-        };
-
+ ```
+this.state = {
+    stations: [],
+    contract: 'Dublin',
+    bikes: [],
+    banking: 'false',
+    stands: [],
+    searchText:'',
+    lat: '',
+    lng:'',
+    sort:'No',
+    range: '0'
+};
+```
 
 It can then be manipulated using setState.
 
@@ -97,13 +85,13 @@ Conditional rendering is used when rendering the modal window. This prevents the
 
 **API**
 
-The API used in this project is the JcDecaux DublinBikes API. It provides all availability information for the Dublin Bikes Scheme via JSON with one endpoint. The API is authnticated with an API key.
+The API used in this project is the JcDecaux DublinBikes API. It provides all availability information for the Dublin Bikes Scheme via JSON with one endpoint. The API is authenticated with an API key.
 
 **Firebase**
 
 The application is available [here](https://dbikes-react-1523440340962.firebaseapp.com/) via FireBase or at dbikes.site (Not forwarded properly due to ongoing Namecheap/firebase issue) accessible at dbikes.site but NOT www.dbikes.site.
 
-The deployment process iis very straigt forward - once you [create an application](https://console.firebase.google.com/) and install the CLI (`npm install -g firebase-tools`). You then login to your account using `firebase login`. You then create a production build of your project using `npm build` and prepare it for deployment to firebase using `firebase init`, form there the CLI steps you through teh process before providing you with the [url](https://dbikes-react-1523440340962.firebaseapp.com/) of your application.
+The deployment process is very straight forward - once you [create an application](https://console.firebase.google.com/) and install the CLI (`npm install -g firebase-tools`). You then login to your account using `firebase login`. You then create a production build of your project using `npm build` and prepare it for deployment to firebase using `firebase init`, form there the CLI steps you through the process before providing you with the [url](https://dbikes-react-1523440340962.firebaseapp.com/) of your application.
 
 **React Router**
 
@@ -113,12 +101,26 @@ React Router is used to match URLs' with pages within the application. DublinBik
 
 **Materialize CSS/React-Materialize**
 
-Materialize CSS and React-Materialize are used to provide styling to the application. These libraries provide ui elemenets including the cards used for the station component, input fields, icons, modals and the grid system.
+Materialize CSS and React-Materialize are used to provide styling to the application. These libraries provide UI elements including the cards used for the station component, input fields, icons, modals and the grid system.
+
+**Type Checking - PropTypes**
+
+Type checking in react can be achieved through PropTypes. PropTypes allow the developer to specify which props are required in order for the component to render and which variable type they should be.
+
+```
+Search.propTypes ={
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    placeholder: PropTypes.string
+}
+```
+
 
 ### Discussion
 ---
 
-Overall I was satisfied with the progression of this project. This is my first time using React and I did find that it had a bit of a learnign curve. Once I became comfortable with components/states/props it became clear that this method of programming was much more efficent, this application did benifit greatly from state/props and in a larger scale/slightly more advanced application I would have benifited even more from the modularity offered by compenets.
+Overall I was satisfied with the progression of this project. This is my first time using React and I did find that it had a bit of a learning curve. Once I became comfortable with components/states/props it became clear that this method of programming was much more efficient, this application did benefit greatly from state/props and in a larger scale/slightly more advanced application I would have benefited even more from the modularity offered by components.
 
 This project did not make use of a tutorial etc. although the foundations of the project were based on in-class labs.
 
