@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
+import PropTypes from 'prop-types';
+import Station from "./station";
 
 const CustomMarker = () => <div><i style={{'color': '#e74c3c'}}className=" medium material-icons">location_on</i></div>;
 
@@ -32,4 +34,10 @@ class Map extends Component {
     }
 }
 
+Map.propTypes ={
+    zoom: PropTypes.number,
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+
+}
 export default Map;

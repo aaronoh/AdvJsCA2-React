@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends React.Component {
     render() {
@@ -13,4 +14,10 @@ class Search extends React.Component {
     }
 }
 
+Search.propTypes ={
+    id: PropTypes.string,
+    name: PropTypes.string,
+    value: PropTypes.string,
+    placeholder: PropTypes.string
+}
 export default Search;

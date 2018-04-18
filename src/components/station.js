@@ -1,6 +1,7 @@
 import React from "react";
 import {Modal, Button} from 'react-materialize';
 import Map from './map';
+import PropTypes from 'prop-types';
 
 
 class Station extends React.Component {
@@ -35,7 +36,8 @@ class Station extends React.Component {
                 header={this.props.name}>
                 <Map center={{lat: this.props.lat, lng: this.props.lng}} name={this.props.name} lat={this.props.lat}
                      lng={this.props.lng}/>
-                 <table><tr>
+                 <table>
+                     <tbody><tr>
                      <td>Banking:</td>
                      <td>{banking}</td>
                  </tr>
@@ -47,6 +49,7 @@ class Station extends React.Component {
                          <td>Stands:</td>
                          <td>{this.props.stands}</td>
                      </tr>
+                     </tbody>
                  </table>
              </Modal>
             let modalid = '#' + this.props.num.toString();
@@ -80,7 +83,7 @@ class Station extends React.Component {
                             </tbody>
                         </table>
                         <div className='card-action'>
-                            <Button style={{'background-color': '#e74c3c'}}name ='show'  value={true} onClick={this.handleInputChange}>Show Map</Button>
+                            <Button style={{'backgroundColor': '#e74c3c'}}name ='show'  value={true} onClick={this.handleInputChange}>Show Map</Button>
                             {modal}
                         </div>
                     </div>
@@ -90,5 +93,15 @@ class Station extends React.Component {
         );
     }
 
+}
+
+Station.propTypes ={
+    banking: PropTypes.bool,
+    num: PropTypes.number,
+    name: PropTypes.string,
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+    bikes: PropTypes.number,
+    stands: PropTypes.number
 }
 export default Station

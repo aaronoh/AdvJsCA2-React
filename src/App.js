@@ -6,6 +6,8 @@ import Nav from './components/router'
 import SortButton from './components/sort'
 import Range from './components/range'
 
+
+
 const uuidv1 = require('uuid/v1');
 
 class GetStations extends React.Component {
@@ -35,8 +37,6 @@ class GetStations extends React.Component {
                 throw new Error('Request failed.');
             })
             .then(data => {
-                console.log(data)
-
                 const stations = data.map(station => {
                     return {name: station.name,
                         bikes: station.available_bikes,
@@ -56,7 +56,7 @@ class GetStations extends React.Component {
     }
     handleInputChange(event) {
         const target = event.target;
-        const value = target.type === 'select-one' ? target.selected : target.value;
+        const value = target.value;
         const name = target.name;
 
         this.setState({
@@ -66,8 +66,6 @@ class GetStations extends React.Component {
     }
 
     render() {
-        // if results are to be sorted, create a copy of the user data and sort it,
-        // otherwise just use the original data from the state
         const data = this.state.sort === 'no' ? this.state.stations : [].concat(this.state.stations)
             .sort((a, b) => {
                 if(a.name < b.name) return -1;
@@ -86,8 +84,6 @@ class GetStations extends React.Component {
             <div>
                 <Nav/>
                 <div className = 'container'>
-
-                {/*<Contract options={['Dublin','Paris']} name = 'city' handleChange  = {this.handleInputChange} label = "Select City" selected = {this.state.contract}/>*/}
                 <Search name="searchText" id = 'searchField' value={this.props.value} handleChange={this.handleInputChange} placeholder={"e.g. Smithfield North"} />
                 <SortButton handleChange={this.handleInputChange} checked={this.state.sort}/>
                 <Range handleChange={this.handleInputChange} range ={this.state.range} />

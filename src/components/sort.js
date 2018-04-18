@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 //Could be adjusted to take a prop containing the list of radio button options
 class SortRadioButton extends React.Component {
     render() {
@@ -23,4 +23,7 @@ class SortRadioButton extends React.Component {
     }
 }
 
+SortRadioButton.propTypes ={
+    checked: PropTypes.string
+}
 export default SortRadioButton;
